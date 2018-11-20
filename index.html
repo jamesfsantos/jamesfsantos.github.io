@@ -1,107 +1,136 @@
-<!DOCTYPE html>
-<html lang="pt-br">
-
+﻿<!DOCTYPE html>
+<html>
 <head>
-	<meta charset="UTF-8" />
-	<title>Tudo sobre Google Glass</title>
-	<link rel="stylesheet" href="_css/estilo.css" />
-</head>
+    <meta charset="UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+	<title>New project</title>
+	
+	<!-- Standardised web app manifest -->
+	<link rel="manifest" href="appmanifest.json" />
+	
+	<!-- Allow fullscreen mode on iOS devices. (These are Apple specific meta tags.) -->
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, minimal-ui" />
+	<meta name="apple-mobile-web-app-capable" content="yes" />
+	<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+	<link rel="apple-touch-icon" sizes="256x256" href="icon-256.png" />
+	<meta name="HandheldFriendly" content="true" />
+	
+	<!-- Chrome for Android web app tags -->
+	<meta name="mobile-web-app-capable" content="yes" />
+	<link rel="shortcut icon" sizes="256x256" href="icon-256.png" />
 
-<body>
-	<div id="interface">
+    <!-- All margins and padding must be zero for the canvas to fill the screen. -->
+	<style type="text/css">
+		* {
+			padding: 0;
+			margin: 0;
+		}
+		html, body {
+			background: #000;
+			color: #fff;
+			overflow: hidden;
+			touch-action: none;
+			-ms-touch-action: none;
+		}
+		canvas {
+			touch-action-delay: none;
+			touch-action: none;
+			-ms-touch-action: none;
+		}
+    </style>
+	
 
-		<header id="cabecalho">
-			<hgroup>
-				<h1>Google Glass</h1>
-				<h2>A revolução do Google está chegando</h2>
-			
-				<img id="icone" src="glass-oculos-preto-peq.png" />
-			
-			</hgroup>
+</head> 
+ 
+<body> 
+	<div id="fb-root"></div>
+	
+	<script>
+	// Issue a warning if trying to preview an exported project on disk.
+	(function(){
+		// Check for running exported on file protocol
+		if (window.location.protocol.substr(0, 4) === "file")
+		{
+			alert("Exported games won't work until you upload them. (When running on the file:/// protocol, browsers block many features from working for security reasons.)");
+		}
+	})();
+	</script>
+	
+	<!-- The canvas must be inside a div called c2canvasdiv -->
+	<div id="c2canvasdiv">
+	
+		<!-- The canvas the project will render to.  If you change its ID, don't forget to change the
+		ID the runtime looks for in the jQuery events above (ready() and cr_sizeCanvas()). -->
+		<canvas id="c2canvas" width="854" height="480">
+			<!-- This text is displayed if the visitor's browser does not support HTML5.
+			You can change it, but it is a good idea to link to a description of a browser
+			and provide some links to download some popular HTML5-compatible browsers. -->
+			<h1>Your browser does not appear to support HTML5.  Try upgrading your browser to the latest version.  <a href="http://www.whatbrowser.org">What is a browser?</a>
+			<br/><br/><a href="http://www.microsoft.com/windows/internet-explorer/default.aspx">Microsoft Internet Explorer</a><br/>
+			<a href="http://www.mozilla.com/firefox/">Mozilla Firefox</a><br/>
+			<a href="http://www.google.com/chrome/">Google Chrome</a><br/>
+			<a href="http://www.apple.com/safari/download/">Apple Safari</a></h1>
+		</canvas>
+		
+	</div>
+	
+	<!-- Pages load faster with scripts at the bottom -->
+	
+	<!-- Construct 2 exported games require jQuery. -->
+	<script src="jquery-2.1.1.min.js"></script>
 
-			<nav id="menu">
-				<h1>Menu Principal</h1>
-				<ul type="disc">
-					<li>
-						<a href="index.html">Home</a>
-					</li>
-					<li>
-						<a href="specs.html">Especificações</a>
-					</li>
-					<li>
-						<a href="fotos.html">Fotos</a>
-					</li>
-					<li>
-						<a href="multimidia.html">Multimídia</a>
-					</li>
-					<li>
-						<a href="fala-conosco.html">Fale conosco</a>
-					</li>
-				</ul>
-				
-			</nav>
-		</header>
-		<hgroup>
-			<h3>Tecnologia > &nbsp;Inovações</h3>
-			<h1>Saiba tudo sobre o Google Glass</h1>
-			<h2>por James Ferreira</h2>
-			<h3>Atualizado em 23/Abril/2013</h3>
-		</hgroup>
 
 	
-		<h2>O que é</h2>
-		<p>Google Glass</span> é um acessório em forma de óculos que possibilita a interação dos usuários com diversobdos em realidade
-			aumentada. Também chamado de
-			<a href="http://glass.google.com" target="_blank">Project Glass</a>, o eletrônico é capaz de tirar fotos a partir de comandos de voz, enviar mensagens instantâneas e realizar
-			vídeo&shy;con&shy;ferên&shy;cias. Seu lançamento está previsto para 2014, e seu preço deve ser de US$ 1,5 mil. Atualmente
-			o
-			<em>Google Glass</em> encontra-se em fase de testes e já possui um vídeo totalmente gravado com o dispositivo. Além disso,
-			a companhia de buscas registrou novas patentes anti-furto e de desbloqueio de tela para o acessório.</p>
+    <!-- The runtime script.  You can rename it, but don't forget to rename the reference here as well.
+    This file will have been minified and obfuscated if you enabled "Minify script" during export. -->
+	<script src="c2runtime.js"></script>
 
-		<figure class="foto-legenda">
-			<img src="_imagens/glass-quadro-homem-mulher.jpg" />
-			<figcaption>
-				<h3>Google Glass</h3>
-				<p>Uma nova maneira de ver o mundo.</p>
-			</figcaption>
-		</figure>
-		<h1>Data de lançamento</h1>
-		<p>Não há uma data específica e oficial para o dispositivo ser lançado, ainda. Pode ser que ele esteja disponível em demonstrações
-			a partir de 2013, mas seu lançamento para as lojas fica para, pelo menos, 2014.</p>
-
-		<h1>Especificações Técnicas</h1>
-		Tabela Técnica do Google Glass Mar/2013 Tela:Resolução equivalente a tela de 25" Camera: 5MP para fotos / 720p para vídeos
-		Conectividade: Wi-Fi/ Bluetooth Memória Interna: 12GB
-
-		<h1>Como funciona</h1>
-		<p>De acordo com fontes próximas do Google, os óculos vão contar com uma pequena tela de LCD ou AMOLED na parte superior e
-			em frente aos olhos do usuário. Com o uso de uma câmera e GPS, você pode se situar, assim como selecionar opções com o
-			movimento da cabeça</p>
-
-		<h1>O que você pode fazer com o Google Glasses</h1>
-		<p>O vídeo de divulgação do Google mostra que você pode se transformar em uma espécie de “super<wbr/>humano”, já que o aparelho
-			pode indicar a quantos metros você está de seu destino, se o metrô está aberto ou fechado, mostrar o clima, agenda e até
-			mesmo permitir que você marque encontros apenas com comandos de voz.</p>
-
-		[AQUI ENTRA UM VÍDEO]
-
-		<h1>Outras Notícias</h1>
-		<h2>Vídeo mais recente</h2>
-
-		[AQUI ENTRA UM VÍDEO]
-
-		<h2>Novidades no Glass</h2>
-		<p>O Google enfim revelou as especificações completas do Google Glass, e com ele uma surpresa ainda inédita no mercado: a
-			gigante das buscas usará um sistema de áudio baseado na transdução por condução. Através das hastes dos óculos, o som
-			será transmitido para o ouvido do usuário por meio de microvibrações em determinados ossos de sua cabeça, sem usar nenhum
-			tipo de alto-falante.</p>
-
-		<p>Além da surpresa do áudio, a tela montada a frente do olho do usuário também chamou atenção. Serão 640 x 360 pixels de
-			resolução que, em proporção, equivaleria a um monitor de 25 polegadas de alta definição colocado a 2,5 metros de distância
-			do espectador.</p>
-
-		<p>Copyright 2013 &copy; by Gustavo Guanabara Facebook | Twitter</p>
-	</div>
-</body>
-
-</html>
+    <script>
+		// Start the Construct 2 project running on window load.
+		jQuery(document).ready(function ()
+		{			
+			// Create new runtime using the c2canvas
+			cr_createRuntime("c2canvas");
+		});
+		
+		// Pause and resume on page becoming visible/invisible
+		function onVisibilityChanged() {
+			if (document.hidden || document.mozHidden || document.webkitHidden || document.msHidden)
+				cr_setSuspended(true);
+			else
+				cr_setSuspended(false);
+		};
+		
+		document.addEventListener("visibilitychange", onVisibilityChanged, false);
+		document.addEventListener("mozvisibilitychange", onVisibilityChanged, false);
+		document.addEventListener("webkitvisibilitychange", onVisibilityChanged, false);
+		document.addEventListener("msvisibilitychange", onVisibilityChanged, false);
+		
+		function OnRegisterSWError(e)
+		{
+			console.warn("Failed to register service worker: ", e);
+		};
+		
+		// Runtime calls this global method when ready to start caching (i.e. after startup).
+		// This registers the service worker which caches resources for offline support.
+		window.C2_RegisterSW = function C2_RegisterSW()
+		{
+			if (!navigator.serviceWorker)
+				return;		// no SW support, ignore call
+			
+			try {
+				navigator.serviceWorker.register("sw.js", { scope: "./" })
+				.then(function (reg)
+				{
+					console.log("Registered service worker on " + reg.scope);
+				})
+				.catch(OnRegisterSWError);
+			}
+			catch (e)
+			{
+				OnRegisterSWError(e);
+			}
+		};
+    </script>
+</body> 
+</html> 
